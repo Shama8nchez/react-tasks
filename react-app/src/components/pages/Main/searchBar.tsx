@@ -6,17 +6,33 @@ function getValue(): string {
   return "";
 }
 
-class SearchBar extends React.Component {
-  state = {
-    value: getValue(),
-  };
+class SearchBar extends React.Component<
+  Record<string, never>,
+  { value: string }
+> {
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    this.state = {
+      value: getValue(),
+    };
+
+    addEventListener("beforeunload", () => {
+      const val = this.state.value;
+      localStorage.setItem("value", val);
+    });
+  }
+
+  componentWillUnmount(): void {
+    const val = this.state.value;
+    localStorage.setItem("value", val);
+  }
 
   setValue = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget) {
       this.setState({
         value: e.currentTarget.value,
       });
-      setTimeout(() => localStorage.setItem("value", this.state.value), 0);
     }
   };
 
