@@ -1,69 +1,128 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  src: url('./assets/fonts/poppins-v20-latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins-v20-latin-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
-a {
+/* poppins-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  src: url('./assets/fonts/poppins-v20-latin-500.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins-v20-latin-500.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-a:hover {
-  color: #535bf2;
+/* poppins-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/poppins-v20-latin-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins-v20-latin-700.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 body {
-  margin: 0;
+  background-color: rgb(87, 178, 235);
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  color: #000000;
+}
+
+#root {
+  max-width: 1400px;
+  margin: 5px auto;
+  box-shadow: 0 0 15px 2px rgb(31, 87, 122);
+  min-height: calc(100vh - 10px);
+  background-color: #ffffff;
+}
+
+.header {
+  padding: 15px;
+  border-bottom: 1px dashed #ffffff;
+}
+
+.header__title {
+  font-size: 42px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.nav__list {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 40px;
+  margin-bottom: 15px;
+  list-style: none;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.nav__list_item {
+  color: #000000;
+  letter-spacing: 0.05em;
+  word-spacing: 0.25em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.search__container {
+  height: 26px;
+  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.search {
+  max-width: 400px;
+  height: 30px;
+  width: 70%;
+  line-height: 26px;
+  font-size: 20px;
+  border: 1px solid rgb(31, 87, 122);
+}
+
+.search:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+.search__button {
+  display: inline-block;
+  margin-left: 30px;
+  max-width: 200px;
+  height: 30px;
+  width: 25%;
+  line-height: 26px;
+  font-size: 20px;
+}
+
+
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 75px;
+  padding: 35px 50px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.card {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.card__title {
+  height: 48px;
+}
+
+.card__img {
+  display: block;
+  width: 180px;
 }
