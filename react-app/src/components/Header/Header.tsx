@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import NavLi from "./NavLi";
 import HeaderTitle from "./HeaderTitle";
-import { EPAGES, EPATH } from "data/constants";
+import { EPAGES, EPATH } from "../../data/constants";
 
 function setTitle() {
   if (location.pathname === "/" || location.pathname === "") return EPAGES.MAIN;

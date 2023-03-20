@@ -9,7 +9,7 @@ import SearchBar from "./components/pages/Main/searchBar";
 describe("App", () => {
   it("Renders Main page", () => {
     render(
-      <MemoryRouter initialEntries={["/vite-react/"]}>
+      <MemoryRouter initialEntries={["/"]}>
         <App />
       </MemoryRouter>
     );
@@ -17,14 +17,14 @@ describe("App", () => {
       screen.getByRole("heading", {
         level: 1,
       })
-    ).toHaveTextContent("Page not found");
+    ).toHaveTextContent("Main");
   });
 });
 
 describe("App", () => {
   it("Renders About page", () => {
     render(
-      <MemoryRouter initialEntries={["/vite-react/about"]}>
+      <MemoryRouter initialEntries={["/about"]}>
         <App />
       </MemoryRouter>
     );
@@ -32,7 +32,7 @@ describe("App", () => {
       screen.getByRole("heading", {
         level: 1,
       })
-    ).toHaveTextContent("Page not found");
+    ).toHaveTextContent("Main");
   });
 });
 
@@ -47,7 +47,7 @@ describe("App", () => {
       screen.getByRole("heading", {
         level: 1,
       })
-    ).toHaveTextContent("Page not found");
+    ).toHaveTextContent("Main");
   });
 });
 
