@@ -7,6 +7,8 @@ function setTitle() {
   if (location.pathname === "/" || location.pathname === "") return EPAGES.MAIN;
   else if (location.pathname === "/about/" || location.pathname === "/about")
     return EPAGES.ABOUT;
+  else if (location.pathname === "/forms/" || location.pathname === "/forms")
+    return EPAGES.FORMS;
   else return EPAGES.NOTFOUND;
 }
 
@@ -38,6 +40,11 @@ class Header extends React.Component<Record<string, never>, { title: string }> {
             <NavLi
               to={EPATH.ABOUT}
               title={EPAGES.ABOUT}
+              onClick={this.handleClick}
+            />
+            <NavLi
+              to={EPATH.FORMS}
+              title={EPAGES.FORMS}
               onClick={this.handleClick}
             />
           </ul>
