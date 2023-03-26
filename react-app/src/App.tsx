@@ -4,7 +4,7 @@ import Notfound from "./components/pages/Notfound/404";
 import Main from "./components/pages/Main/main";
 import Header from "./components/Header/Header";
 import { EPATH } from "./data/constants";
-import Forms from "./components/pages/Forms/Form";
+import Forms from "./components/pages/Forms/Forms";
 
 function App() {
   return (

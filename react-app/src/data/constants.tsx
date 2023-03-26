@@ -11,3 +11,16 @@ export enum EPAGES {
   MAIN = "Main",
   NOTFOUND = "404. Page not found",
 }
+
+export const COURSES = [{
+  id: 1,
+  course: "React"
+},
+{
+  id: 2,
+  course: "Angular"
+},
+{
+  id: 3,
+  course: "Vue"
+},]

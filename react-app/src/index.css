@@ -126,3 +126,41 @@ body {
   display: block;
   width: 180px;
 }
+
+.form {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.inputs {
+  display: inline-block;
+  width: 45%;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.input-text {
+  width: 250px;
+  height: 25px;
+}
+
+.input-date,
+.input-checbox {
+  height: 25px;
+}
+
+.input-select {
+  width: 150px;
+  height: 25px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.file {
+  display: block;
+  width: 150px;
+}
