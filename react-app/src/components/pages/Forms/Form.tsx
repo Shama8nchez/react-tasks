@@ -35,11 +35,16 @@ class Form extends React.Component {
   radioRefB = React.createRef<HTMLInputElement>();
   fileRef = React.createRef<HTMLInputElement>();
 
+  inputLabelRef = React.createRef<HTMLLabelElement>();
+  dateLabelRef = React.createRef<HTMLLabelElement>();
+  radioRef = React.createRef<HTMLLabelElement>();
+  fileLabelRef = React.createRef<HTMLLabelElement>();
+
   state = {
     textValue: "",
     dateValue: "",
-    selectValue: "",
-    checkBox: false,
+    selectValue: "React",
+    checkBox: "",
     radio: "",
   };
 
@@ -48,8 +53,35 @@ class Form extends React.Component {
 
     const { textValue, dateValue, selectValue, checkBox, radio } = this.state;
 
+    const regex = new RegExp("^[a-zA-Z0-9]{2,20}$");
+
+    if (textValue === "" || textValue.match(regex)) {
+      this.inputLabelRef.current?.classList.add("error");
+    }
+
+    if (dateValue === "" || Date.parse(dateValue) > Date.now()) {
+      this.dateLabelRef.current?.classList.add("error");
+    }
+
+    if (radio === "") {
+      this.radioRef.current?.classList.add("error");
+    }
+
+    if (
+      textValue === "" ||
+      textValue.match(regex) ||
+      dateValue === "" ||
+      Date.parse(dateValue) > Date.now() ||
+      radio === ""
+    )
+      return;
+
     if (this.fileRef.current?.files) {
       const file = this.fileRef.current?.files[0];
+      if (!file) {
+        this.fileLabelRef.current?.classList.add("error");
+        return;
+      }
       const render = new FileReader();
       render.readAsDataURL(file);
 
@@ -60,7 +92,7 @@ class Form extends React.Component {
           name: textValue,
           birthday: dateValue,
           course: selectValue,
-          agree: checkBox.toString(),
+          agree: checkBox,
           language: radio,
           img: src,
         });
@@ -72,8 +104,8 @@ class Form extends React.Component {
         this.setState({
           textValue: "",
           dateValue: "",
-          selectValue: "",
-          checkBox: false,
+          selectValue: "React",
+          checkBox: "",
           radio: "",
         }),
       2000
@@ -91,7 +123,9 @@ class Form extends React.Component {
         textValue: this.inputRef.current.value,
         dateValue: this.dateRef.current.value,
         selectValue: this.selectRef.current.value,
-        checkBox: this.checkRef.current?.checked ? true : false,
+        checkBox: this.checkRef.current?.checked
+          ? "Ready for relocation"
+          : "Not ready for relocation",
         radio: this.radioRefE.current?.checked
           ? "English"
           : this.radioRefR.current?.checked
@@ -105,7 +139,7 @@ class Form extends React.Component {
     return (
       <Fragment>
         <form className="form">
-          <label className="label">
+          <label ref={this.inputLabelRef} className="label">
             Enter your name:
             <span className="inputs">
               <input
@@ -119,7 +153,7 @@ class Form extends React.Component {
             </span>
           </label>
 
-          <label className="label">
+          <label ref={this.dateLabelRef} className="label">
             Enter your birthday date:
             <span className="inputs">
               <input
@@ -158,14 +192,14 @@ class Form extends React.Component {
                 ref={this.checkRef}
                 type="checkbox"
                 name="relocation"
-                checked={this.state.checkBox}
+                /* checked={this.state.checkBox} */
                 onChange={this.handleChange}
                 className="input-checkbox"
               />
             </span>
           </label>
 
-          <label className="label">
+          <label ref={this.radioRef} className="label">
             What language do you prefer:
             <span className="inputs">
               <input
@@ -197,15 +231,10 @@ class Form extends React.Component {
             </span>
           </label>
 
-          <label className="label">
+          <label ref={this.fileLabelRef} className="label">
             Choose file:
             <span className="inputs">
-              <input
-                ref={this.fileRef}
-                type="file"
-                name="file"
-                onChange={this.handleChange}
-              />
+              <input ref={this.fileRef} type="file" name="file" />
             </span>
           </label>
 
