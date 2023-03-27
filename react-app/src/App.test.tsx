@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { getAllByText, getByText, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "./App";
@@ -92,6 +92,7 @@ test("form"),
 
     expect(btn).toBeInTheDocument();
     expect(input).toBeInTheDocument();
+    expect(screen.getByRole('checkbox')).toBeInTheDocument();
   };
 
 test("formpage"),
@@ -102,6 +103,11 @@ test("formpage"),
 
     expect(btn).toBeInTheDocument();
     expect(input).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", {
+        level: 1,
+      })
+    ).toHaveTextContent("SUBMIT");
   };
 
 test("card"),
@@ -142,4 +148,42 @@ test("formcard"),
     );
     const element = screen.getByText("Andrey");
     expect(element).toBeInTheDocument();
+    expect(screen.getByText(/Andrey/i)).toBeInTheDocument();
+    expect(screen.getByText('2023-03-17')).toBeInTheDocument();
   };
+
+  test("formscard"),
+  async () => {
+    const { getByAltText } = await render(
+      <FormCard
+        name={"Andrey"}
+        birthday={"2023-03-17"}
+        course={"React"}
+        agree={"Ready for relocation"}
+        language={"English"}
+        img={"akcsnaiv"}
+        key={"c1"}
+      />
+    );
+    const image = getByAltText('card');
+
+    expect(image).toHaveAttribute('src', 'akcsnaiv')
+  };
+
+  describe('CardForm', () => {
+    it('should render all form fields', () => {
+      const { getByLabelText } = render(
+        <FormCard 
+          name={"Andrey"}
+          birthday={"2023-03-17"}
+          course={"React"}
+          agree={"Ready for relocation"}
+          language={"English"}
+          img={"akcsnaiv"}
+          key={"c1"}
+        />
+      );
+      const el = document.querySelector('p') as HTMLParagraphElement
+      expect(getByText(el, 'Andrey')).toBeInTheDocument();
+    });
+  });
