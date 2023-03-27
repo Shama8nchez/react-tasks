@@ -13,6 +13,7 @@ class Form extends React.Component {
   radioRefR = React.createRef<HTMLInputElement>();
   radioRefB = React.createRef<HTMLInputElement>();
   fileRef = React.createRef<HTMLInputElement>();
+  noteRef = React.createRef<HTMLParagraphElement>();
 
   inputLabelRef = React.createRef<HTMLLabelElement>();
   dateLabelRef = React.createRef<HTMLLabelElement>();
@@ -98,6 +99,7 @@ class Form extends React.Component {
     setTimeout(
       () => {
         this.formRef.current?.reset();
+        this.noteRef.current?.classList.add("show");
         this.setState({
           textValue: "",
           dateValue: "",
@@ -109,6 +111,10 @@ class Form extends React.Component {
 
       1500
     );
+
+    setTimeout(() => {
+      this.noteRef.current?.classList.remove("show");
+    }, 5000);
   };
 
   handleChange = () => {
@@ -232,6 +238,9 @@ class Form extends React.Component {
 
           <button onClick={this.handleShow}>SUBMIT</button>
         </form>
+        <p ref={this.noteRef} className="note">
+          Card was added
+        </p>
         <div className="container">
           {cards.map((item, index) => (
             <FormCard

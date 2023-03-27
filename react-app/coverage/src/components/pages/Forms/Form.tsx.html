@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.86% </span>
+                <span class="strong">60.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>154/253</span>
+                <span class='fraction'>158/262</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.86% </span>
+                <span class="strong">60.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>154/253</span>
+                <span class='fraction'>158/262</span>
             </div>
         
             
@@ -316,7 +316,16 @@
 <a name='L251'></a><a href='#L251'>251</a>
 <a name='L252'></a><a href='#L252'>252</a>
 <a name='L253'></a><a href='#L253'>253</a>
-<a name='L254'></a><a href='#L254'>254</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -361,6 +370,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -532,6 +547,9 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -584,6 +602,7 @@ class Form extends React.Component {
   radioRefR = React.createRef&lt;HTMLInputElement&gt;();
   radioRefB = React.createRef&lt;HTMLInputElement&gt;();
   fileRef = React.createRef&lt;HTMLInputElement&gt;();
+  noteRef = React.createRef&lt;HTMLParagraphElement&gt;();
 &nbsp;
   inputLabelRef = React.createRef&lt;HTMLLabelElement&gt;();
   dateLabelRef = React.createRef&lt;HTMLLabelElement&gt;();
@@ -669,6 +688,7 @@ class Form extends React.Component {
 <span class="cstat-no" title="statement not covered" >    setTimeout(</span>
 <span class="cstat-no" title="statement not covered" >      () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        this.formRef.current?.reset();</span>
+<span class="cstat-no" title="statement not covered" >        this.noteRef.current?.classList.add("show");</span>
 <span class="cstat-no" title="statement not covered" >        this.setState({</span>
 <span class="cstat-no" title="statement not covered" >          textValue: "",</span>
 <span class="cstat-no" title="statement not covered" >          dateValue: "",</span>
@@ -680,6 +700,10 @@ class Form extends React.Component {
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >      1500</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    setTimeout(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.noteRef.current?.classList.remove("show");</span>
+<span class="cstat-no" title="statement not covered" >    }, 5000);</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 &nbsp;
   handleChange = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
@@ -803,6 +827,9 @@ class Form extends React.Component {
 &nbsp;
           &lt;button onClick={this.handleShow}&gt;SUBMIT&lt;/button&gt;
         &lt;/form&gt;
+        &lt;p ref={this.noteRef} className="note"&gt;
+          Card was added
+        &lt;/p&gt;
         &lt;div className="container"&gt;
           {cards.map((item, index) =&gt; (
 <span class="cstat-no" title="statement not covered" >            &lt;FormCard</span>
@@ -829,7 +856,7 @@ export default Form;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-27T13:33:08.059Z
+                at 2023-03-27T16:52:21.260Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
