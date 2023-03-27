@@ -5,11 +5,27 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { Card } from "./components/pages/Main/card";
 import SearchBar from "./components/pages/Main/searchBar";
+import { FormCard } from "./components/pages/Forms/FormCard";
 
 describe("App", () => {
   it("Renders Main page", () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+      })
+    ).toHaveTextContent("Main");
+  });
+});
+
+describe("App", () => {
+  it("Renders Forms page", () => {
+    render(
+      <MemoryRouter initialEntries={["/forms"]}>
         <App />
       </MemoryRouter>
     );
@@ -77,5 +93,31 @@ test("card"),
     };
     render(<Card card={obj1} />);
     const element = screen.getByText("name");
+    expect(element).toBeInTheDocument();
+  };
+
+test("formcard"),
+  () => {
+    const obj1 = {
+      name: "Andrey",
+      birthday: "2023-03-17",
+      course: "React",
+      agree: "Ready for relocation",
+      language: "English",
+      img: "akcsnaiv",
+      key: "c1",
+    };
+    render(
+      <FormCard
+        name={obj1.name}
+        birthday={obj1.birthday}
+        course={obj1.course}
+        agree={obj1.agree}
+        language={obj1.language}
+        img={obj1.img}
+        key={obj1.key}
+      />
+    );
+    const element = screen.getByText("Andrey");
     expect(element).toBeInTheDocument();
   };
