@@ -1,29 +1,7 @@
 import { COURSES } from "../../../data/constants";
 import React, { Fragment } from "react";
-
-type TProps = {
-  name: string;
-  birthday: string;
-  course: string;
-  agree: string;
-  language: string;
-  img: string;
-};
-
-const cards: TProps[] = [];
-
-function FormCard(props: TProps) {
-  return (
-    <div className="container-item">
-      <img src={props.img} alt="card" className="file" />
-      <p>{props.name}</p>
-      <p>{props.birthday}</p>
-      <p>{props.course}</p>
-      <p>{props.agree}</p>
-      <p>{props.language}</p>
-    </div>
-  );
-}
+import { cards } from "./../../../data/constants";
+import { FormCard } from "./FormCard";
 
 class Form extends React.Component {
   inputRef = React.createRef<HTMLInputElement>();

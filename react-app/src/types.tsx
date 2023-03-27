@@ -12,3 +12,12 @@ export type TCard = {
   produced: string;
   release: string;
 };
+
+export type TProps = {
+  name: string;
+  birthday: string;
+  course: string;
+  agree: string;
+  language: string;
+  img: string;
+};

@@ -1,3 +1,5 @@
+import { TProps } from "../types";
+
 export enum EPATH {
   ABOUT = "/about",
   FORMS = "/forms",
@@ -26,3 +28,5 @@ export const COURSES = [
     course: "Vue",
   },
 ];
+
+export const cards: TProps[] = [];
