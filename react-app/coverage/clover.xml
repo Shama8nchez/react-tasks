@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679918594389" clover="3.2.0">
-  <project timestamp="1679918594389" name="All files">
-    <metrics statements="691" coveredstatements="577" conditionals="38" coveredconditionals="35" methods="33" coveredmethods="28" elements="762" coveredelements="640" complexity="0" loc="691" ncloc="691" packages="7" files="14" classes="14"/>
+<coverage generated="1679918770918" clover="3.2.0">
+  <project timestamp="1679918770919" name="All files">
+    <metrics statements="696" coveredstatements="582" conditionals="38" coveredconditionals="35" methods="33" coveredmethods="28" elements="767" coveredelements="645" complexity="0" loc="696" ncloc="696" packages="7" files="14" classes="14"/>
     <package name="src">
       <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\App.tsx">
@@ -127,9 +127,9 @@
       </file>
     </package>
     <package name="src.components.pages.Forms">
-      <metrics statements="269" coveredstatements="172" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="5"/>
+      <metrics statements="274" coveredstatements="177" conditionals="6" coveredconditionals="6" methods="7" coveredmethods="5"/>
       <file name="Form.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\components\pages\Forms\Form.tsx">
-        <metrics statements="244" coveredstatements="147" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="2"/>
+        <metrics statements="249" coveredstatements="152" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -357,23 +357,28 @@
         <line num="225" count="1" type="stmt"/>
         <line num="226" count="1" type="stmt"/>
         <line num="227" count="1" type="stmt"/>
-        <line num="228" count="0" type="stmt"/>
-        <line num="229" count="0" type="stmt"/>
-        <line num="230" count="0" type="stmt"/>
-        <line num="231" count="0" type="stmt"/>
-        <line num="232" count="0" type="stmt"/>
+        <line num="228" count="1" type="stmt"/>
+        <line num="229" count="1" type="stmt"/>
+        <line num="230" count="1" type="stmt"/>
+        <line num="231" count="1" type="stmt"/>
+        <line num="232" count="1" type="stmt"/>
         <line num="233" count="0" type="stmt"/>
         <line num="234" count="0" type="stmt"/>
         <line num="235" count="0" type="stmt"/>
         <line num="236" count="0" type="stmt"/>
-        <line num="237" count="1" type="stmt"/>
-        <line num="238" count="1" type="stmt"/>
-        <line num="239" count="1" type="stmt"/>
-        <line num="240" count="1" type="stmt"/>
-        <line num="241" count="1" type="stmt"/>
+        <line num="237" count="0" type="stmt"/>
+        <line num="238" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="240" count="0" type="stmt"/>
+        <line num="241" count="0" type="stmt"/>
         <line num="242" count="1" type="stmt"/>
         <line num="243" count="1" type="stmt"/>
         <line num="244" count="1" type="stmt"/>
+        <line num="245" count="1" type="stmt"/>
+        <line num="246" count="1" type="stmt"/>
+        <line num="247" count="1" type="stmt"/>
+        <line num="248" count="1" type="stmt"/>
+        <line num="249" count="1" type="stmt"/>
       </file>
       <file name="FormCard.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\components\pages\Forms\FormCard.tsx">
         <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>

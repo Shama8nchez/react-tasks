@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { getAllByText, getByText, render, screen } from "@testing-library/react";
+import { getByText, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "./App";
@@ -92,7 +92,7 @@ test("form"),
 
     expect(btn).toBeInTheDocument();
     expect(input).toBeInTheDocument();
-    expect(screen.getByRole('checkbox')).toBeInTheDocument();
+    expect(screen.getByRole("checkbox")).toBeInTheDocument();
   };
 
 test("formpage"),
@@ -149,10 +149,10 @@ test("formcard"),
     const element = screen.getByText("Andrey");
     expect(element).toBeInTheDocument();
     expect(screen.getByText(/Andrey/i)).toBeInTheDocument();
-    expect(screen.getByText('2023-03-17')).toBeInTheDocument();
+    expect(screen.getByText("2023-03-17")).toBeInTheDocument();
   };
 
-  test("formscard"),
+test("formscard"),
   async () => {
     const { getByAltText } = await render(
       <FormCard
@@ -165,25 +165,25 @@ test("formcard"),
         key={"c1"}
       />
     );
-    const image = getByAltText('card');
+    const image = getByAltText("card");
 
-    expect(image).toHaveAttribute('src', 'akcsnaiv')
+    expect(image).toHaveAttribute("src", "akcsnaiv");
   };
 
-  describe('CardForm', () => {
-    it('should render all form fields', () => {
-      const { getByLabelText } = render(
-        <FormCard 
-          name={"Andrey"}
-          birthday={"2023-03-17"}
-          course={"React"}
-          agree={"Ready for relocation"}
-          language={"English"}
-          img={"akcsnaiv"}
-          key={"c1"}
-        />
-      );
-      const el = document.querySelector('p') as HTMLParagraphElement
-      expect(getByText(el, 'Andrey')).toBeInTheDocument();
-    });
+describe("CardForm", () => {
+  it("should render all form fields", () => {
+    render(
+      <FormCard
+        name={"Andrey"}
+        birthday={"2023-03-17"}
+        course={"React"}
+        agree={"Ready for relocation"}
+        language={"English"}
+        img={"akcsnaiv"}
+        key={"c1"}
+      />
+    );
+    const el = document.querySelector("p") as HTMLParagraphElement;
+    expect(getByText(el, "Andrey")).toBeInTheDocument();
   });
+});

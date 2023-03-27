@@ -217,7 +217,12 @@ class Form extends React.Component {
           <label ref={this.fileLabelRef} className="label">
             Choose file:
             <span className="inputs">
-              <input ref={this.fileRef} type="file" name="file" accept="image/*" />
+              <input
+                ref={this.fileRef}
+                type="file"
+                name="file"
+                accept="image/*"
+              />
             </span>
           </label>
 
