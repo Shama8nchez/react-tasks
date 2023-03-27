@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import NavLi from "./NavLi";
 import HeaderTitle from "./HeaderTitle";
-import { EPAGES, EPATH } from "../../data/constants";
+import { EPAGES, EPATH, ROUTE } from "../../data/constants";
 
 function setTitle() {
   if (location.pathname === "/" || location.pathname === "") return EPAGES.MAIN;
@@ -32,21 +32,16 @@ class Header extends React.Component<Record<string, never>, { title: string }> {
         <HeaderTitle title={this.state.title} />
         <nav>
           <ul className="nav__list">
-            <NavLi
-              to={EPATH.MAIN}
-              title={EPAGES.MAIN}
-              onClick={this.handleClick}
-            />
-            <NavLi
-              to={EPATH.ABOUT}
-              title={EPAGES.ABOUT}
-              onClick={this.handleClick}
-            />
-            <NavLi
-              to={EPATH.FORMS}
-              title={EPAGES.FORMS}
-              onClick={this.handleClick}
-            />
+            {ROUTE.filter((item) => item.path !== EPATH.NOTFOUND).map(
+              (item, index) => (
+                <NavLi
+                  to={item.path}
+                  title={item.page}
+                  key={`title${index}`}
+                  onClick={this.handleClick}
+                />
+              )
+            )}
           </ul>
         </nav>
       </header>

@@ -1,4 +1,8 @@
+import Main from "../components/pages/Main/main";
+import About from "../components/pages/About/About";
 import { TProps } from "../types";
+import Forms from "../components/pages/Forms/Forms";
+import Notfound from "../components/pages/Notfound/404";
 
 export enum EPATH {
   ABOUT = "/about",
@@ -13,6 +17,29 @@ export enum EPAGES {
   MAIN = "Main",
   NOTFOUND = "404. Page not found",
 }
+
+export const ROUTE = [
+  {
+    path: EPATH.MAIN,
+    page: EPAGES.MAIN,
+    element: <Main />,
+  },
+  {
+    path: EPATH.ABOUT,
+    page: EPAGES.ABOUT,
+    element: <About />,
+  },
+  {
+    path: EPATH.FORMS,
+    page: EPAGES.FORMS,
+    element: <Forms />,
+  },
+  {
+    path: EPATH.NOTFOUND,
+    page: EPAGES.NOTFOUND,
+    element: <Notfound />,
+  },
+];
 
 export const COURSES = [
   {

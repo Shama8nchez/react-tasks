@@ -6,6 +6,8 @@ import App from "./App";
 import { Card } from "./components/pages/Main/card";
 import SearchBar from "./components/pages/Main/searchBar";
 import { FormCard } from "./components/pages/Forms/FormCard";
+import Form from "./components/pages/Forms/Form";
+import Forms from "./components/pages/Forms/Forms";
 
 describe("App", () => {
   it("Renders Main page", () => {
@@ -78,6 +80,26 @@ test("searchBar"),
       const value = screen.getByText(text);
       expect(value).toBeInTheDocument();
     }
+    expect(btn).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+  };
+
+test("form"),
+  () => {
+    render(<Form />);
+    const btn = screen.getByRole("button");
+    const input = screen.getByPlaceholderText("");
+
+    expect(btn).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+  };
+
+test("formpage"),
+  () => {
+    render(<Forms />);
+    const btn = screen.getByRole("button");
+    const input = screen.getByPlaceholderText("");
+
     expect(btn).toBeInTheDocument();
     expect(input).toBeInTheDocument();
   };
