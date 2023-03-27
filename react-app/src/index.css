@@ -162,9 +162,20 @@ body {
 
 .file {
   display: block;
-  width: 150px;
+  width: 190px;
 }
 
 .error {
   color: red;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
+.container-item {
+  border: 1px solid black;
 }

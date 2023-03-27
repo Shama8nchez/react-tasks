@@ -4,6 +4,7 @@ import { cards } from "./../../../data/constants";
 import { FormCard } from "./FormCard";
 
 class Form extends React.Component {
+  formRef = React.createRef<HTMLFormElement>();
   inputRef = React.createRef<HTMLInputElement>();
   dateRef = React.createRef<HTMLInputElement>();
   selectRef = React.createRef<HTMLSelectElement>();
@@ -28,12 +29,16 @@ class Form extends React.Component {
 
   handleShow = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    this.inputLabelRef.current?.classList.remove("error");
+    this.dateLabelRef.current?.classList.remove("error");
+    this.radioRef.current?.classList.remove("error");
+    this.fileLabelRef.current?.classList.remove("error");
 
     const { textValue, dateValue, selectValue, checkBox, radio } = this.state;
 
-    const regex = new RegExp("^[a-zA-Z0-9]{2,20}$");
+    const regex = new RegExp("^[a-zA-Z]{2,20}$");
 
-    if (textValue === "" || textValue.match(regex)) {
+    if (textValue === "" || !textValue.match(regex)) {
       this.inputLabelRef.current?.classList.add("error");
     }
 
@@ -45,21 +50,19 @@ class Form extends React.Component {
       this.radioRef.current?.classList.add("error");
     }
 
-    if (
-      textValue === "" ||
-      textValue.match(regex) ||
-      dateValue === "" ||
-      Date.parse(dateValue) > Date.now() ||
-      radio === ""
-    )
-      return;
-
     if (this.fileRef.current?.files) {
       const file = this.fileRef.current?.files[0];
-      if (!file) {
-        this.fileLabelRef.current?.classList.add("error");
+      if (!file) this.fileLabelRef.current?.classList.add("error");
+      if (
+        !file ||
+        textValue === "" ||
+        dateValue === "" ||
+        Date.parse(dateValue) > Date.now() ||
+        radio === "" ||
+        !textValue.match(regex)
+      )
         return;
-      }
+
       const render = new FileReader();
       render.readAsDataURL(file);
 
@@ -78,15 +81,18 @@ class Form extends React.Component {
     }
 
     setTimeout(
-      () =>
+      () => {
+        this.formRef.current?.reset();
         this.setState({
           textValue: "",
           dateValue: "",
           selectValue: "React",
           checkBox: "",
           radio: "",
-        }),
-      2000
+        });
+      },
+
+      1500
     );
   };
 
@@ -116,7 +122,7 @@ class Form extends React.Component {
   render() {
     return (
       <Fragment>
-        <form className="form">
+        <form ref={this.formRef} className="form">
           <label ref={this.inputLabelRef} className="label">
             Enter your name:
             <span className="inputs">
@@ -170,7 +176,6 @@ class Form extends React.Component {
                 ref={this.checkRef}
                 type="checkbox"
                 name="relocation"
-                /* checked={this.state.checkBox} */
                 onChange={this.handleChange}
                 className="input-checkbox"
               />
@@ -216,7 +221,7 @@ class Form extends React.Component {
             </span>
           </label>
 
-          <button onClick={this.handleShow}>Click</button>
+          <button onClick={this.handleShow}>SUBMIT</button>
         </form>
         <div className="container">
           {cards.map((item, index) => (
