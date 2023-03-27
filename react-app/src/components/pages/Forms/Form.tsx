@@ -131,7 +131,7 @@ class Form extends React.Component {
           ? "Russian"
           : this.radioRefB.current?.checked
           ? "Belarusian"
-          : ""
+          : "",
       });
     }
   };
