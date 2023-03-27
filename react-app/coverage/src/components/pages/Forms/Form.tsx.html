@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.04% </span>
+                <span class="strong">61.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>152/249</span>
+                <span class='fraction'>154/251</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.04% </span>
+                <span class="strong">61.35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>152/249</span>
+                <span class='fraction'>154/251</span>
             </div>
         
             
@@ -312,7 +312,24 @@
 <a name='L247'></a><a href='#L247'>247</a>
 <a name='L248'></a><a href='#L248'>248</a>
 <a name='L249'></a><a href='#L249'>249</a>
-<a name='L250'></a><a href='#L250'>250</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -500,30 +517,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -581,6 +585,21 @@ class Form extends React.Component {
   dateLabelRef = React.createRef&lt;HTMLLabelElement&gt;();
   radioRef = React.createRef&lt;HTMLLabelElement&gt;();
   fileLabelRef = React.createRef&lt;HTMLLabelElement&gt;();
+&nbsp;
+  RADIO_INPUTS = [
+    {
+      input: this.radioRefE,
+      language: "English",
+    },
+    {
+      input: this.radioRefR,
+      language: "Russian",
+    },
+    {
+      input: this.radioRefB,
+      language: "Belarusian",
+    },
+  ];
 &nbsp;
   state = {
     textValue: "",
@@ -748,32 +767,19 @@ class Form extends React.Component {
           &lt;label ref={this.radioRef} className="label"&gt;
             What language do you prefer:
             &lt;span className="inputs"&gt;
-              &lt;input
-                ref={this.radioRefE}
-                type="radio"
-                name="language"
-                value="English"
-                onChange={this.handleChange}
-              /&gt;
-              English
-              &lt;br /&gt;
-              &lt;input
-                ref={this.radioRefR}
-                type="radio"
-                name="language"
-                value="Russian"
-                onChange={this.handleChange}
-              /&gt;
-              Russian
-              &lt;br /&gt;
-              &lt;input
-                ref={this.radioRefB}
-                type="radio"
-                name="language"
-                value="Belarusian"
-                onChange={this.handleChange}
-              /&gt;
-              Belarusian
+              {this.RADIO_INPUTS.map((item, index) =&gt; (
+                &lt;Fragment key={`radio${index}`}&gt;
+                  &lt;input
+                    ref={item.input}
+                    type="radio"
+                    name="language"
+                    value={item.language}
+                    onChange={this.handleChange}
+                  /&gt;
+                  {item.language}
+                  &lt;br /&gt;
+                &lt;/Fragment&gt;
+              ))}
             &lt;/span&gt;
           &lt;/label&gt;
 &nbsp;
@@ -817,7 +823,7 @@ export default Form;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-27T12:06:10.881Z
+                at 2023-03-27T13:26:40.787Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

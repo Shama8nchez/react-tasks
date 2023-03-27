@@ -19,6 +19,21 @@ class Form extends React.Component {
   radioRef = React.createRef<HTMLLabelElement>();
   fileLabelRef = React.createRef<HTMLLabelElement>();
 
+  RADIO_INPUTS = [
+    {
+      input: this.radioRefE,
+      language: "English",
+    },
+    {
+      input: this.radioRefR,
+      language: "Russian",
+    },
+    {
+      input: this.radioRefB,
+      language: "Belarusian",
+    },
+  ];
+
   state = {
     textValue: "",
     dateValue: "",
@@ -114,7 +129,9 @@ class Form extends React.Component {
           ? "English"
           : this.radioRefR.current?.checked
           ? "Russian"
-          : "Belarusian",
+          : this.radioRefB.current?.checked
+          ? "Belarusian"
+          : ""
       });
     }
   };
@@ -185,32 +202,19 @@ class Form extends React.Component {
           <label ref={this.radioRef} className="label">
             What language do you prefer:
             <span className="inputs">
-              <input
-                ref={this.radioRefE}
-                type="radio"
-                name="language"
-                value="English"
-                onChange={this.handleChange}
-              />
-              English
-              <br />
-              <input
-                ref={this.radioRefR}
-                type="radio"
-                name="language"
-                value="Russian"
-                onChange={this.handleChange}
-              />
-              Russian
-              <br />
-              <input
-                ref={this.radioRefB}
-                type="radio"
-                name="language"
-                value="Belarusian"
-                onChange={this.handleChange}
-              />
-              Belarusian
+              {this.RADIO_INPUTS.map((item, index) => (
+                <Fragment key={`radio${index}`}>
+                  <input
+                    ref={item.input}
+                    type="radio"
+                    name="language"
+                    value={item.language}
+                    onChange={this.handleChange}
+                  />
+                  {item.language}
+                  <br />
+                </Fragment>
+              ))}
             </span>
           </label>
 
