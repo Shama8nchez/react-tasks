@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import NavLi from "./NavLi";
 import HeaderTitle from "./HeaderTitle";
 import { EPAGES, EPATH, ROUTE } from "../../data/constants";
@@ -12,41 +12,33 @@ function setTitle() {
   else return EPAGES.NOTFOUND;
 }
 
-class Header extends React.Component<Record<string, never>, { title: string }> {
-  constructor(props: Record<string, never>) {
-    super(props);
+function Header() {
+  const [header, setHeader] = useState<string | EPAGES>(setTitle());
 
-    this.state = {
-      title: setTitle(),
-    };
-  }
-
-  handleClick = (e: MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     const el = (e.target as HTMLElement).textContent;
-    if (el) this.setState({ title: el });
+    if (el) setHeader(el);
   };
 
-  render() {
-    return (
-      <header className="header">
-        <HeaderTitle title={this.state.title} />
-        <nav>
-          <ul className="nav__list">
-            {ROUTE.filter((item) => item.path !== EPATH.NOTFOUND).map(
-              (item, index) => (
-                <NavLi
-                  to={item.path}
-                  title={item.page}
-                  key={`title${index}`}
-                  onClick={this.handleClick}
-                />
-              )
-            )}
-          </ul>
-        </nav>
-      </header>
-    );
-  }
+  return (
+    <header className="header">
+      <HeaderTitle title={header} />
+      <nav>
+        <ul className="nav__list">
+          {ROUTE.filter((item) => item.path !== EPATH.NOTFOUND).map(
+            (item, index) => (
+              <NavLi
+                to={item.path}
+                title={item.page}
+                key={`title${index}`}
+                onClick={handleClick}
+              />
+            )
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
 }
 
 export default Header;

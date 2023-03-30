@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680187853002" clover="3.2.0">
-  <project timestamp="1680187853002" name="All files">
-    <metrics statements="693" coveredstatements="576" conditionals="39" coveredconditionals="36" methods="30" coveredmethods="25" elements="762" coveredelements="637" complexity="0" loc="693" ncloc="693" packages="7" files="14" classes="14"/>
+<coverage generated="1680196390382" clover="3.2.0">
+  <project timestamp="1680196390382" name="All files">
+    <metrics statements="685" coveredstatements="568" conditionals="37" coveredconditionals="34" methods="28" coveredmethods="23" elements="750" coveredelements="625" complexity="0" loc="685" ncloc="685" packages="7" files="14" classes="14"/>
     <package name="src">
       <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\App.tsx">
@@ -33,9 +33,9 @@
       </file>
     </package>
     <package name="src.components.Header">
-      <metrics statements="67" coveredstatements="59" conditionals="10" coveredconditionals="8" methods="7" coveredmethods="6"/>
+      <metrics statements="59" coveredstatements="51" conditionals="8" coveredconditionals="6" methods="5" coveredmethods="4"/>
       <file name="Header.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\components\Header\Header.tsx">
-        <metrics statements="52" coveredstatements="44" conditionals="8" coveredconditionals="6" methods="5" coveredmethods="4"/>
+        <metrics statements="44" coveredstatements="36" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -51,43 +51,35 @@
         <line num="13" count="4" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="16" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="16" count="4" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
         <line num="18" count="4" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="22" count="4" type="stmt"/>
         <line num="23" count="4" type="stmt"/>
         <line num="24" count="4" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="29" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="32" count="4" type="stmt"/>
-        <line num="33" count="4" type="stmt"/>
-        <line num="34" count="4" type="stmt"/>
-        <line num="35" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="36" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="37" count="12" type="stmt"/>
-        <line num="38" count="12" type="stmt"/>
-        <line num="39" count="12" type="stmt"/>
-        <line num="40" count="12" type="stmt"/>
-        <line num="41" count="12" type="stmt"/>
-        <line num="42" count="12" type="stmt"/>
-        <line num="43" count="4" type="stmt"/>
-        <line num="44" count="4" type="stmt"/>
-        <line num="45" count="4" type="stmt"/>
-        <line num="46" count="4" type="stmt"/>
-        <line num="47" count="4" type="stmt"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="49" count="4" type="stmt"/>
-        <line num="50" count="4" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="30" count="12" type="stmt"/>
+        <line num="31" count="12" type="stmt"/>
+        <line num="32" count="12" type="stmt"/>
+        <line num="33" count="12" type="stmt"/>
+        <line num="34" count="12" type="stmt"/>
+        <line num="35" count="12" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
       </file>
       <file name="HeaderTitle.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\components\Header\HeaderTitle.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
