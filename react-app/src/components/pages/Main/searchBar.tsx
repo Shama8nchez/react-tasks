@@ -9,7 +9,7 @@ function getValue(): string {
 function SearchBar() {
   const [value, setValue] = useState(getValue());
 
-  const input = useRef(value)
+  const input = useRef(value);
 
   const setInput = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget) {
@@ -29,12 +29,7 @@ function SearchBar() {
 
   return (
     <div className="search__container">
-      <input
-        type="text"
-        className="search"
-        value={value}
-        onChange={setInput}
-      />
+      <input type="text" className="search" value={value} onChange={setInput} />
       <button className="search__button">SEARCH</button>
     </div>
   );
