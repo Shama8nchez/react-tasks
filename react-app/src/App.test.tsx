@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { getByText, render, screen } from "@testing-library/react";
+import { getByText, render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "./App";
@@ -109,6 +109,67 @@ test("formpage"),
       })
     ).toHaveTextContent("SUBMIT");
   };
+
+const check = () => {
+  const utils = render(<Form />);
+  const input = screen.getByLabelText("Ready for relocation:");
+  return {
+    input,
+    ...utils,
+  };
+};
+
+test("textInput", () => {
+  const { input } = check();
+  expect((input as HTMLInputElement).checked).toEqual(false);
+  fireEvent.click(input);
+  expect((input as HTMLInputElement).checked).toEqual(true);
+});
+
+const setup = () => {
+  const utils = render(<Form />);
+  const input = screen.getByLabelText("Enter your name:");
+  return {
+    input,
+    ...utils,
+  };
+};
+
+test("textInput", () => {
+  const { input } = setup();
+  fireEvent.change(input, { target: { value: "abc" } });
+  expect((input as HTMLInputElement).value).toBe("abc");
+});
+
+const date = () => {
+  const utils = render(<Form />);
+  const input = screen.getByLabelText("Enter your birthday date:");
+  return {
+    input,
+    ...utils,
+  };
+};
+
+test("dateInput", () => {
+  const { input } = date();
+  fireEvent.change(input, { target: { value: "2023-03-08" } });
+  expect((input as HTMLInputElement).value).toBe("2023-03-08");
+});
+
+const select = () => {
+  const utils = render(<Form />);
+  const input = screen.getByLabelText("Choose a course:");
+  return {
+    input,
+    ...utils,
+  };
+};
+
+test("selectInput", () => {
+  const { input } = select();
+  fireEvent.change(input, { target: { value: "React" } });
+  expect((input as HTMLInputElement).value).toBe("React");
+});
 
 test("card"),
   () => {
