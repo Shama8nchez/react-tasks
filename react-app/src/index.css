@@ -181,12 +181,8 @@ body {
 }
 
 .note {
+  height: 2em;
   color: green;
   font-size: 1.5em;
   text-align: center;
-  visibility: hidden;
-}
-
-.show {
-  visibility: visible;
 }

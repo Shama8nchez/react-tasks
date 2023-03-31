@@ -43,6 +43,10 @@ export const ROUTE = [
 
 export const COURSES = [
   {
+    id: 0,
+    course: "Choose a course",
+  },
+  {
     id: 1,
     course: "React",
   },
