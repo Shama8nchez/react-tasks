@@ -30,7 +30,6 @@ function Form() {
   });
 
   const onSubmit = (data: TForm): void => {
-    console.log(data);
     const file = data.img[0];
 
     if (file) {
