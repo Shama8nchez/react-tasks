@@ -15,9 +15,18 @@ export type TCard = {
 
 export type TProps = {
   name: string;
-  birthday: string;
+  birth: string;
   course: string;
-  agree: string;
+  relocation: string;
   language: string;
   img: string;
+};
+
+export type TForm = {
+  name: string;
+  birth: string;
+  course: string;
+  relocation: boolean;
+  language: string;
+  img: FileList;
 };

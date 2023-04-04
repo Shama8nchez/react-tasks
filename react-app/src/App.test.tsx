@@ -98,16 +98,16 @@ test("form"),
 test("formpage"),
   () => {
     render(<Forms />);
-    const btn = screen.getByRole("button");
+    const btn = screen.getByRole("submit");
     const input = screen.getByPlaceholderText("");
 
     expect(btn).toBeInTheDocument();
     expect(input).toBeInTheDocument();
     expect(
-      screen.getByRole("button", {
+      screen.getByRole("submit", {
         level: 1,
       })
-    ).toHaveTextContent("SUBMIT");
+    ).toHaveTextContent("Отправить");
   };
 
 const check = () => {
@@ -119,7 +119,7 @@ const check = () => {
   };
 };
 
-test("textInput", () => {
+test("checkboxInput", () => {
   const { input } = check();
   expect((input as HTMLInputElement).checked).toEqual(false);
   fireEvent.click(input);
@@ -128,7 +128,7 @@ test("textInput", () => {
 
 const setup = () => {
   const utils = render(<Form />);
-  const input = screen.getByLabelText("Enter your name:");
+  const input = screen.getByLabelText("Ready for relocation:");
   return {
     input,
     ...utils,
@@ -199,9 +199,9 @@ test("formcard"),
     render(
       <FormCard
         name={obj1.name}
-        birthday={obj1.birthday}
+        birth={obj1.birthday}
         course={obj1.course}
-        agree={obj1.agree}
+        relocation={obj1.agree}
         language={obj1.language}
         img={obj1.img}
         key={obj1.key}
@@ -218,9 +218,9 @@ test("formscard"),
     const { getByAltText } = await render(
       <FormCard
         name={"Andrey"}
-        birthday={"2023-03-17"}
+        birth={"2023-03-17"}
         course={"React"}
-        agree={"Ready for relocation"}
+        relocation={"Ready for relocation"}
         language={"English"}
         img={"akcsnaiv"}
         key={"c1"}
@@ -236,9 +236,9 @@ describe("CardForm", () => {
     render(
       <FormCard
         name={"Andrey"}
-        birthday={"2023-03-17"}
+        birth={"2023-03-17"}
         course={"React"}
-        agree={"Ready for relocation"}
+        relocation={"Ready for relocation"}
         language={"English"}
         img={"akcsnaiv"}
         key={"c1"}
