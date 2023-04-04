@@ -1,102 +1,39 @@
 import { COURSES } from "../../../data/constants";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { FormCard } from "./FormCard";
-import { TProps } from "../../../types";
+import { TProps, TForm } from "../../../types";
+import { useForm } from "react-hook-form";
+
+const RADIO_INPUTS = [
+  {
+    language: "English",
+  },
+  {
+    language: "Russian",
+  },
+  {
+    language: "Belarusian",
+  },
+];
 
 function Form() {
-  const fileRef = React.createRef<HTMLInputElement>();
-  const [textValue, setTextValue] = useState("");
-  const [dateValue, setDateValue] = useState("");
-  const [selectValue, setSelectValue] = useState("Choose a course");
-  const [checkboxValue, setCheckboxValue] = useState(false);
   const [card, setCard] = useState<TProps[]>([]);
-  const [radioValue, setRadioValue] = useState("");
   const [note, setNote] = useState("");
 
-  const inputLabelRef = React.createRef<HTMLLabelElement>();
-  const dateLabelRef = React.createRef<HTMLLabelElement>();
-  const selectLabelRef = React.createRef<HTMLLabelElement>();
-  const radioRef = React.createRef<HTMLParagraphElement>();
-  const checkboxRef = React.createRef<HTMLLabelElement>();
-  const fileLabelRef = React.createRef<HTMLLabelElement>();
-  const formRef = React.createRef<HTMLFormElement>();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<TForm>({
+    reValidateMode: "onSubmit",
+  });
 
-  const RADIO_INPUTS = [
-    {
-      language: "English",
-    },
-    {
-      language: "Russian",
-    },
-    {
-      language: "Belarusian",
-    },
-  ];
+  const onSubmit = (data: TForm): void => {
+    console.log(data);
+    const file = data.img[0];
 
-  const textChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setTextValue(e.currentTarget.value);
-  };
-
-  const dateChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setDateValue(e.currentTarget.value);
-  };
-
-  const selectChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    setSelectValue(e.currentTarget.value);
-  };
-
-  const checkboxChange = () => {
-    setCheckboxValue(!checkboxValue);
-  };
-
-  const radioChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setRadioValue(e.currentTarget.value);
-  };
-
-  const handleShow = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    inputLabelRef.current?.classList.remove("error");
-    dateLabelRef.current?.classList.remove("error");
-    radioRef.current?.classList.remove("error");
-    fileLabelRef.current?.classList.remove("error");
-    checkboxRef.current?.classList.remove("error");
-    selectLabelRef.current?.classList.remove("error");
-
-    const regex = new RegExp("^[a-zA-Z ]{2,20}$");
-
-    if (!textValue.match(regex)) {
-      inputLabelRef.current?.classList.add("error");
-    }
-
-    if (dateValue === "" || Date.parse(dateValue) > Date.now()) {
-      dateLabelRef.current?.classList.add("error");
-    }
-
-    if (selectValue === "Choose a course") {
-      selectLabelRef.current?.classList.add("error");
-    }
-
-    if (radioValue === "") {
-      radioRef.current?.classList.add("error");
-    }
-
-    if (!checkboxValue) {
-      checkboxRef.current?.classList.add("error");
-    }
-
-    if (fileRef.current?.files) {
-      const file = fileRef.current?.files[0];
-      if (!file) fileLabelRef.current?.classList.add("error");
-      if (
-        !file ||
-        dateValue === "" ||
-        Date.parse(dateValue) > Date.now() ||
-        radioValue === "" ||
-        !textValue.match(regex) ||
-        !checkboxValue ||
-        selectValue === "Choose a course"
-      )
-        return;
+    if (file) {
       const render = new FileReader();
       render.readAsDataURL(file);
 
@@ -106,91 +43,107 @@ function Form() {
         setCard((prevCard) => [
           ...prevCard,
           {
-            name: textValue,
-            birthday: dateValue,
-            course: selectValue,
-            agree: checkboxValue
-              ? "Ready for relocation"
-              : "Not ready for relocation",
-            language: radioValue,
+            name: data.name,
+            birth: data.birth,
+            course: data.course,
+            relocation: `${data.relocation ? "Ready for relocation" : ""}`,
+            language: data.language,
             img: src,
           },
         ]);
-        setNote("Card was added");
-
-        setTextValue("");
-        setDateValue("");
-        setSelectValue("Choose a course");
-        setCheckboxValue(false);
-        setRadioValue("");
-        formRef.current?.reset();
-        setTimeout(() => setNote(""), 5000);
       };
+
+      setNote("Card was added");
+      reset();
+
+      setTimeout(() => setNote(""), 5000);
     }
   };
 
-  useEffect(() => {}, [card]);
-
   return (
     <Fragment>
-      <form className="form" ref={formRef}>
-        <label className="label" ref={inputLabelRef}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <label className="label">
           Enter your name:
           <span className="inputs">
             <input
+              {...register("name", {
+                required: "Field is empty",
+                minLength: {
+                  value: 2,
+                  message: "min 2 letters",
+                },
+                pattern: /^[a-zA-Z ]{2,20}$/i,
+              })}
               type="text"
-              name="name"
-              value={textValue}
-              onChange={textChange}
               className="input-text"
             />
           </span>
         </label>
+        <div className="err">
+          {errors?.name && (
+            <p>{(errors?.name.message as string) || "Use only letters"}</p>
+          )}
+        </div>
 
-        <label className="label" ref={dateLabelRef}>
+        <label className="label">
           Enter your birthday date:
           <span className="inputs">
             <input
+              {...register("birth", {
+                required: "Field is empty",
+                validate: (date) => Date.parse(date) < Date.now(),
+              })}
               type="date"
-              name="birth"
-              value={dateValue}
-              onChange={dateChange}
               className="input-date"
             />
           </span>
         </label>
+        <div className="err">
+          {errors?.birth && (
+            <p>{(errors?.birth.message as string) || "Wrong date"}</p>
+          )}
+        </div>
 
-        <label className="label" ref={selectLabelRef}>
+        <label className="label">
           Choose a course:
           <span className="inputs">
             <select
-              value={selectValue}
-              onChange={selectChange}
+              {...register("course", {
+                required: "Choose a course",
+              })}
               className="input-select"
             >
               {COURSES.map(({ id, course }) => (
-                <option key={`course${id}`} value={course}>
+                <option key={`course${id}`} value={`${id === 0 ? "" : course}`}>
                   {course}
                 </option>
               ))}
             </select>
           </span>
         </label>
+        <div className="err">
+          {errors?.course && <p>{errors?.course.message as string}</p>}
+        </div>
 
-        <label className="label" ref={checkboxRef}>
+        <label className="label">
           Ready for relocation:
           <span className="inputs">
             <input
+              {...register("relocation", {
+                required: "You must be ready",
+                validate: (date) => date === true,
+              })}
               type="checkbox"
-              name="relocation"
-              checked={checkboxValue}
-              onChange={checkboxChange}
               className="input-checkbox"
             />
           </span>
         </label>
+        <div className="err">
+          {errors?.relocation && <p>{errors?.relocation.message as string}</p>}
+        </div>
 
-        <p className="label" ref={radioRef}>
+        <p className="label">
           What language do you prefer:
           <span className="inputs">
             {RADIO_INPUTS.map((item, index) => (
@@ -198,10 +151,10 @@ function Form() {
                 <label>
                   <input
                     type="radio"
-                    name="language"
-                    checked={radioValue === item.language}
+                    {...register("language", {
+                      required: "Choose language",
+                    })}
                     value={item.language}
-                    onChange={radioChange}
                   />
                   {item.language}
                 </label>
@@ -210,24 +163,37 @@ function Form() {
             ))}
           </span>
         </p>
+        <div className="err">
+          {errors?.language && <p>{errors?.language.message as string}</p>}
+        </div>
 
-        <label className="label" ref={fileLabelRef}>
-          Choose file:
+        <label className="label">
+          Choose a file:
           <span className="inputs">
-            <input ref={fileRef} type="file" name="file" accept="image/*" />
+            <input
+              {...register("img", {
+                required: "Need image",
+              })}
+              type="file"
+              accept="image/*"
+              className="input-file"
+            />
           </span>
         </label>
+        <div className="err">
+          {errors?.img && <p>{errors?.img.message as string}</p>}
+        </div>
 
-        <button onClick={handleShow}>SUBMIT</button>
+        <input type="submit" />
       </form>
       <p className="note">{note}</p>
       <div className="container">
         {card.map((item, index) => (
           <FormCard
             name={item.name}
-            birthday={item.birthday}
+            birth={item.birth}
             course={item.course}
-            agree={item.agree}
+            relocation={item.relocation}
             language={item.language}
             img={item.img}
             key={`c${index}`}

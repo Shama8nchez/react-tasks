@@ -186,3 +186,8 @@ body {
   font-size: 1.5em;
   text-align: center;
 }
+
+.err {
+  height: 24px;
+  color: red;
+}
