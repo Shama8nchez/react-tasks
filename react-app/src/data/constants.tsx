@@ -60,4 +60,8 @@ export const COURSES = [
   },
 ];
 
+export const BASE_PATH = "https://rickandmortyapi.com/api";
+export const SEARCH_PATH = "/character";
+export const SEARCH_PARAM = "/?name";
+
 export const cards: TProps[] = [];

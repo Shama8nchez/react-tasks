@@ -1,37 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { TData } from "types";
 
-function getValue(): string {
-  const value = localStorage.getItem("value");
-  if (value) return value;
-  return "";
-}
+function SearchBar(props: { func: (data: TData) => void }) {
+  const { register, handleSubmit } = useForm<TData>();
 
-function SearchBar() {
-  const [value, setValue] = useState(getValue());
-
-  const input = useRef(value);
-
-  const setInput = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.currentTarget) {
-      setValue(e.currentTarget.value);
-    }
-  };
-
-  useEffect(() => {
-    input.current = value;
-  }, [value]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem("value", input.current);
-    };
-  }, []);
+  const onSubmit = props.func;
 
   return (
-    <div className="search__container">
-      <input type="text" className="search" value={value} onChange={setInput} />
-      <button className="search__button">SEARCH</button>
-    </div>
+    <form className="search__container" onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" className="search" {...register("search")} />
+      <input type="submit" value="SEARCH" className="search__button" />
+    </form>
   );
 }
 
