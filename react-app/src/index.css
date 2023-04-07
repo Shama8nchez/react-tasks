@@ -81,6 +81,7 @@ body {
   max-width: 400px;
   height: 30px;
   width: 70%;
+  padding: 0 10px;
   line-height: 26px;
   font-size: 20px;
   border: 1px solid rgb(31, 87, 122);
@@ -100,8 +101,6 @@ body {
   font-size: 20px;
 }
 
-
-
 .cards {
   display: flex;
   justify-content: center;
@@ -113,18 +112,24 @@ body {
 
 .card {
   width: 200px;
-  padding: 10px;
   border: 1px solid #000000;
   border-radius: 5px;
 }
 
 .card__title {
   height: 48px;
+  text-align: center;
 }
 
 .card__img {
   display: block;
-  width: 180px;
+  width: 198px;
+  border-radius: 5px 5px 0 0;
+}
+
+.card__species,
+.card__status {
+  padding: 0 5px;
 }
 
 .form {
