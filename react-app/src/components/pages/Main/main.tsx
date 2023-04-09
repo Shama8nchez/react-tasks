@@ -30,6 +30,7 @@ function Main() {
     },
   });
   const [loadingModal, setLoadingModal] = useState(false);
+  const [loadingCards, setLoadingCards] = useState(false);
 
   const showModal = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget) {
@@ -60,13 +61,15 @@ function Main() {
 
   const onSubmitSearch = (data: TData): void => {
     setResult([]);
-    setLoading("Wait...");
+    setLoadingCards(true);
+    setLoading("");
     fetch(`${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${data.search}`)
       .then((rez) => rez.json())
       .then((rez) => {
         if (rez.results) {
           setResult(rez.results);
         } else setLoading("No result were found with this query");
+        setLoadingCards(false);
       });
   };
 
@@ -79,7 +82,12 @@ function Main() {
         data={character}
       />
       <SearchBar func={onSubmitSearch} />
-      <Cards card={result} str={loading} func={showModal} />
+      <Cards
+        card={result}
+        str={loading}
+        func={showModal}
+        loading={loadingCards}
+      />
     </main>
   );
 }

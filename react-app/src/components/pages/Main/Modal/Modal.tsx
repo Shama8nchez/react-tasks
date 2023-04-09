@@ -25,17 +25,40 @@ const Modal = (props: {
         onClick={(e: MouseEvent) => e.stopPropagation()}
       >
         <Loader visible={props.loading} />
-        <img src={props.data.image} alt="book" className="card__img" />
-        <h3 className="card__title">{props.data.name}</h3>
-        <p className="card__species">Species: {props.data.species}</p>
-        <p className="card__status">Status: {props.data.status}</p>
-        <p className="card__status">Gender: {props.data.gender}</p>
-        <p className="card__status">Origin: {props.data.origin.name}</p>
-        <p className="card__status">Location: {props.data.origin.name}</p>
-        <p className="card__status">Created: {props.data.created}</p>
-        <p className="card__status">
-          Episode: {`${props.data.created.length}`}
-        </p>
+        <div className={st.modal__container}>
+          <div>
+            <img
+              src={props.data.image}
+              alt="book"
+              className={st.modal__card_img}
+            />
+          </div>
+          <div>
+            <h3 className="card__title">{props.data.name}</h3>
+            <p className="card__species">
+              <strong>Species:</strong> {props.data.species}
+            </p>
+            <p className="card__status">
+              <strong>Status:</strong> {props.data.status}
+            </p>
+            <p className="card__status">
+              <strong>Gender:</strong> {props.data.gender}
+            </p>
+            <p className="card__status">
+              <strong>Origin:</strong> {props.data.origin.name}
+            </p>
+            <p className="card__status">
+              <strong>Location:</strong> {props.data.origin.name}
+            </p>
+            <p className="card__status">
+              <strong>Created:</strong> {props.data.created.split("T")[0]}
+            </p>
+            <p className="card__status">
+              <strong>Number of episodes:</strong>{" "}
+              {`${props.data.created.length}`}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

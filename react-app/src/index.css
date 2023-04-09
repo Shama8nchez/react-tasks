@@ -75,6 +75,7 @@ body {
 .search__container {
   height: 26px;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .search {
@@ -102,6 +103,7 @@ body {
 }
 
 .cards {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -186,7 +188,7 @@ body {
 }
 
 .note {
-  height: 2em;
+  height: 4em;
   color: green;
   font-size: 1.5em;
   text-align: center;
