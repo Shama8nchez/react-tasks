@@ -7,7 +7,6 @@ import { Card } from "./components/pages/Main/card";
 import SearchBar from "./components/pages/Main/searchBar";
 import { FormCard } from "./components/pages/Forms/FormCard";
 import Form from "./components/pages/Forms/Form";
-import Forms from "./components/pages/Forms/Forms";
 import { TData } from "types";
 import Modal from "./components/pages/Main/Modal/Modal";
 
@@ -73,25 +72,23 @@ describe("App", () => {
   });
 });
 
-test("searchBar",
-  () => {
-    const func = (data: TData) => {
-      console.log(data)
-    }
+test("searchBar", () => {
+  const func = (data: TData) => {
+    console.log(data);
+  };
 
-    render(<SearchBar func={func} />);
-    const btn = screen.getByRole("button");
-    expect(btn).toBeInTheDocument();
-  });
+  render(<SearchBar func={func} />);
+  const btn = screen.getByRole("button");
+  expect(btn).toBeInTheDocument();
+});
 
-test("form",
-  () => {
-    render(<Form />);
-    const btn = screen.getByRole("button");
+test("form", () => {
+  render(<Form />);
+  const btn = screen.getByRole("button");
 
-    expect(btn).toBeInTheDocument();
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-  });
+  expect(btn).toBeInTheDocument();
+  expect(screen.getByRole("checkbox")).toBeInTheDocument();
+});
 
 const check = () => {
   const utils = render(<Form />);
@@ -154,116 +151,112 @@ test("selectInput", () => {
   expect((input as HTMLInputElement).value).toBe("React");
 });
 
-test("card",
-  () => {
-    const showModal = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (e.currentTarget) {
-        console.log(e.currentTarget);
-      }
-    };
-
-    const obj1 = {
-      id: 1,
-      name: "Morti",
-      status: "Died",
-      species: "Human",
-      type: "",
-      gender: "Male",
-      origin: {
-        name: "Earth",
-        url: "url",
-      },
-      location: {
-        name: "Earth",
-        url: "url",
-      },
-      image: "img",
-      episode: ["1", "2"],
-      url: "url",
-      created: "2013-02-17",
-    };
-    render(<Card card={obj1} func={showModal}/>);
-    const element = screen.getByText("Morti");
-    expect(element).toBeInTheDocument();
-  });
-
-test("formcard",
-  () => {
-    const obj1 = {
-      name: "Andrey",
-      birthday: "2023-03-17",
-      course: "React",
-      agree: "Ready for relocation",
-      language: "English",
-      img: "akcsnaiv",
-      key: "c1",
-    };
-    render(
-      <FormCard
-        name={obj1.name}
-        birth={obj1.birthday}
-        course={obj1.course}
-        relocation={obj1.agree}
-        language={obj1.language}
-        img={obj1.img}
-        key={obj1.key}
-      />
-    );
-    const element = screen.getByText("Andrey");
-    expect(element).toBeInTheDocument();
-    expect(screen.getByText(/Andrey/i)).toBeInTheDocument();
-    expect(screen.getByText("2023-03-17")).toBeInTheDocument();
-  });
-
-test("formscard",
-  async () => {
-    const { getByAltText } = await render(
-      <FormCard
-        name={"Andrey"}
-        birth={"2023-03-17"}
-        course={"React"}
-        relocation={"Ready for relocation"}
-        language={"English"}
-        img={"akcsnaiv"}
-        key={"c1"}
-      />
-    );
-    const image = getByAltText("card");
-
-    expect(image).toHaveAttribute("src", "akcsnaiv");
-  });
-
-  test("Modal loads",
-  () => {
-    const func = () => {
-      return true;
+test("card", () => {
+  const showModal = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget) {
+      console.log(e.currentTarget);
     }
+  };
 
-    const obj1 = {
-      id: 1,
-      name: "Morti",
-      status: "Died",
-      species: "Human",
-      type: "",
-      gender: "Male",
-      origin: {
-        name: "Earth",
-        url: "url",
-      },
-      location: {
-        name: "Earth",
-        url: "url",
-      },
-      image: "img",
-      episode: ["1", "2"],
+  const obj1 = {
+    id: 1,
+    name: "Morti",
+    status: "Died",
+    species: "Human",
+    type: "",
+    gender: "Male",
+    origin: {
+      name: "Earth",
       url: "url",
-      created: "2013-02-17",
-    };
+    },
+    location: {
+      name: "Earth",
+      url: "url",
+    },
+    image: "img",
+    episode: ["1", "2"],
+    url: "url",
+    created: "2013-02-17",
+  };
+  render(<Card card={obj1} func={showModal} />);
+  const element = screen.getByText("Morti");
+  expect(element).toBeInTheDocument();
+});
 
-    render(<Modal visible={true} loading={true} setVisible={func} data={obj1}/>);
-    const div = screen.getByText("Wait...");
-    expect(div).toBeInTheDocument();
-  });
+test("formcard", () => {
+  const obj1 = {
+    name: "Andrey",
+    birthday: "2023-03-17",
+    course: "React",
+    agree: "Ready for relocation",
+    language: "English",
+    img: "akcsnaiv",
+    key: "c1",
+  };
+  render(
+    <FormCard
+      name={obj1.name}
+      birth={obj1.birthday}
+      course={obj1.course}
+      relocation={obj1.agree}
+      language={obj1.language}
+      img={obj1.img}
+      key={obj1.key}
+    />
+  );
+  const element = screen.getByText("Andrey");
+  expect(element).toBeInTheDocument();
+  expect(screen.getByText(/Andrey/i)).toBeInTheDocument();
+  expect(screen.getByText("2023-03-17")).toBeInTheDocument();
+});
+
+test("formscard", async () => {
+  const { getByAltText } = await render(
+    <FormCard
+      name={"Andrey"}
+      birth={"2023-03-17"}
+      course={"React"}
+      relocation={"Ready for relocation"}
+      language={"English"}
+      img={"akcsnaiv"}
+      key={"c1"}
+    />
+  );
+  const image = getByAltText("card");
+
+  expect(image).toHaveAttribute("src", "akcsnaiv");
+});
+
+test("Modal loads", () => {
+  const func = () => {
+    return true;
+  };
+
+  const obj1 = {
+    id: 1,
+    name: "Morti",
+    status: "Died",
+    species: "Human",
+    type: "",
+    gender: "Male",
+    origin: {
+      name: "Earth",
+      url: "url",
+    },
+    location: {
+      name: "Earth",
+      url: "url",
+    },
+    image: "img",
+    episode: ["1", "2"],
+    url: "url",
+    created: "2013-02-17",
+  };
+
+  render(<Modal visible={true} loading={true} setVisible={func} data={obj1} />);
+  const div = screen.getByText("Wait...");
+  expect(div).toBeInTheDocument();
+});
 
 describe("CardForm", () => {
   it("should render all form fields", () => {
