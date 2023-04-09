@@ -2,14 +2,29 @@ import { useForm } from "react-hook-form";
 import { TData } from "types";
 
 function SearchBar(props: { func: (data: TData) => void }) {
-  const { register, handleSubmit } = useForm<TData>();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<TData>({
+    reValidateMode: "onSubmit",
+  });
 
   const onSubmit = props.func;
 
   return (
     <form className="search__container" onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" className="search" {...register("search")} />
+      <input
+        type="text"
+        className="search"
+        {...register("search", {
+          required: "Field is empty",
+        })}
+      />
       <input type="submit" value="SEARCH" className="search__button" />
+      <div className="err">
+        {errors?.search && <p>{errors?.search.message as string}</p>}
+      </div>
     </form>
   );
 }

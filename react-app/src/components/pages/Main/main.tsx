@@ -1,5 +1,5 @@
 import SearchBar from "./searchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cards from "./card";
 import { BASE_PATH, SEARCH_PATH, SEARCH_PARAM } from "../../../data/constants";
 import { TCard, TData } from "../../../types";
@@ -72,6 +72,18 @@ function Main() {
         setLoadingCards(false);
       });
   };
+
+  useEffect(() => {
+    setLoadingCards(true);
+    fetch(`${BASE_PATH}${SEARCH_PATH}`)
+      .then((rez) => rez.json())
+      .then((rez) => {
+        if (rez.results) {
+          setResult(rez.results);
+        } else setLoading("No result were found with this query");
+        setLoadingCards(false);
+      });
+  }, []);
 
   return (
     <main>

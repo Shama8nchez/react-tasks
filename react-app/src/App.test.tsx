@@ -8,6 +8,8 @@ import SearchBar from "./components/pages/Main/searchBar";
 import { FormCard } from "./components/pages/Forms/FormCard";
 import Form from "./components/pages/Forms/Form";
 import Forms from "./components/pages/Forms/Forms";
+import { TData } from "types";
+import Modal from "./components/pages/Main/Modal/Modal";
 
 describe("App", () => {
   it("Renders Main page", () => {
@@ -36,6 +38,8 @@ describe("App", () => {
         level: 1,
       })
     ).toHaveTextContent("Main");
+
+    expect(screen.getByText("Form")).toBeInTheDocument();
   });
 });
 
@@ -69,46 +73,25 @@ describe("App", () => {
   });
 });
 
-test("searchBar"),
+test("searchBar",
   () => {
-    render(<SearchBar />);
-    const btn = screen.getByRole("button");
-    const input = screen.getByPlaceholderText("");
-    localStorage.setItem("value", "sometext");
-    const text = localStorage.getItem("value");
-    if (text) {
-      const value = screen.getByText(text);
-      expect(value).toBeInTheDocument();
+    const func = (data: TData) => {
+      console.log(data)
     }
-    expect(btn).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
-  };
 
-test("form"),
+    render(<SearchBar func={func} />);
+    const btn = screen.getByRole("button");
+    expect(btn).toBeInTheDocument();
+  });
+
+test("form",
   () => {
     render(<Form />);
     const btn = screen.getByRole("button");
-    const input = screen.getByPlaceholderText("");
 
     expect(btn).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
-  };
-
-test("formpage"),
-  () => {
-    render(<Forms />);
-    const btn = screen.getByRole("submit");
-    const input = screen.getByPlaceholderText("");
-
-    expect(btn).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
-    expect(
-      screen.getByRole("submit", {
-        level: 1,
-      })
-    ).toHaveTextContent("Отправить");
-  };
+  });
 
 const check = () => {
   const utils = render(<Form />);
@@ -171,21 +154,40 @@ test("selectInput", () => {
   expect((input as HTMLInputElement).value).toBe("React");
 });
 
-test("card"),
+test("card",
   () => {
-    const obj1 = {
-      title: "name",
-      source: "way",
-      produced: "by me",
-      release: "1201",
-      id: 1,
+    const showModal = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (e.currentTarget) {
+        console.log(e.currentTarget);
+      }
     };
-    render(<Card card={obj1} />);
-    const element = screen.getByText("name");
-    expect(element).toBeInTheDocument();
-  };
 
-test("formcard"),
+    const obj1 = {
+      id: 1,
+      name: "Morti",
+      status: "Died",
+      species: "Human",
+      type: "",
+      gender: "Male",
+      origin: {
+        name: "Earth",
+        url: "url",
+      },
+      location: {
+        name: "Earth",
+        url: "url",
+      },
+      image: "img",
+      episode: ["1", "2"],
+      url: "url",
+      created: "2013-02-17",
+    };
+    render(<Card card={obj1} func={showModal}/>);
+    const element = screen.getByText("Morti");
+    expect(element).toBeInTheDocument();
+  });
+
+test("formcard",
   () => {
     const obj1 = {
       name: "Andrey",
@@ -211,9 +213,9 @@ test("formcard"),
     expect(element).toBeInTheDocument();
     expect(screen.getByText(/Andrey/i)).toBeInTheDocument();
     expect(screen.getByText("2023-03-17")).toBeInTheDocument();
-  };
+  });
 
-test("formscard"),
+test("formscard",
   async () => {
     const { getByAltText } = await render(
       <FormCard
@@ -229,7 +231,39 @@ test("formscard"),
     const image = getByAltText("card");
 
     expect(image).toHaveAttribute("src", "akcsnaiv");
-  };
+  });
+
+  test("Modal loads",
+  () => {
+    const func = () => {
+      return true;
+    }
+
+    const obj1 = {
+      id: 1,
+      name: "Morti",
+      status: "Died",
+      species: "Human",
+      type: "",
+      gender: "Male",
+      origin: {
+        name: "Earth",
+        url: "url",
+      },
+      location: {
+        name: "Earth",
+        url: "url",
+      },
+      image: "img",
+      episode: ["1", "2"],
+      url: "url",
+      created: "2013-02-17",
+    };
+
+    render(<Modal visible={true} loading={true} setVisible={func} data={obj1}/>);
+    const div = screen.getByText("Wait...");
+    expect(div).toBeInTheDocument();
+  });
 
 describe("CardForm", () => {
   it("should render all form fields", () => {
