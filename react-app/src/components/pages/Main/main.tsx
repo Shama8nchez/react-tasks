@@ -5,6 +5,12 @@ import { BASE_PATH, SEARCH_PATH, SEARCH_PARAM } from "../../../data/constants";
 import { TCard, TData } from "../../../types";
 import Modal from "./Modal/Modal";
 
+function getValue(): string {
+  const value = localStorage.getItem("value");
+  if (value) return value;
+  return "";
+}
+
 function Main() {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState("");
@@ -71,11 +77,12 @@ function Main() {
         } else setLoading("No result were found with this query");
         setLoadingCards(false);
       });
+    localStorage.setItem("value", data.search);
   };
 
   useEffect(() => {
     setLoadingCards(true);
-    fetch(`${BASE_PATH}${SEARCH_PATH}`)
+    fetch(`${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${getValue()}`)
       .then((rez) => rez.json())
       .then((rez) => {
         if (rez.results) {
