@@ -25,6 +25,9 @@ const Modal = (props: {
         onClick={(e: MouseEvent) => e.stopPropagation()}
       >
         <Loader visible={props.loading} />
+        <span className={st.close} onClick={() => props.setVisible(false)}>
+          x
+        </span>
         <div className={st.modal__container}>
           <div>
             <img
