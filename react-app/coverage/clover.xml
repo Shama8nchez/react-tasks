@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681120310505" clover="3.2.0">
-  <project timestamp="1681120310505" name="All files">
-    <metrics statements="676" coveredstatements="578" conditionals="49" coveredconditionals="38" methods="35" coveredmethods="26" elements="760" coveredelements="642" complexity="0" loc="676" ncloc="676" packages="9" files="15" classes="15"/>
+<coverage generated="1681222565467" clover="3.2.0">
+  <project timestamp="1681222565467" name="All files">
+    <metrics statements="679" coveredstatements="581" conditionals="49" coveredconditionals="38" methods="36" coveredmethods="26" elements="764" coveredelements="645" complexity="0" loc="679" ncloc="679" packages="9" files="15" classes="15"/>
     <package name="src">
       <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\App.tsx">
@@ -567,9 +567,9 @@
       </file>
     </package>
     <package name="src.components.pages.Main.Modal">
-      <metrics statements="67" coveredstatements="67" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="1"/>
+      <metrics statements="70" coveredstatements="70" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="1"/>
       <file name="Modal.tsx" path="D:\rs_school\rsschool-react\react-tasks\react-app\src\components\pages\Main\Modal\Modal.tsx">
-        <metrics statements="67" coveredstatements="67" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="1"/>
+        <metrics statements="70" coveredstatements="70" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -635,8 +635,11 @@
         <line num="63" count="3" type="stmt"/>
         <line num="64" count="3" type="stmt"/>
         <line num="65" count="3" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.pages.Notfound">

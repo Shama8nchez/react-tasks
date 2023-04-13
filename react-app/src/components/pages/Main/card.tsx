@@ -1,12 +1,12 @@
 import Loader from "../../utils/Load/Loader";
 import { TCard } from "../../../types";
+import { useAppSelector } from "../../../store/store";
 
 export function Card(props: {
   card: TCard;
-  func: (e: React.MouseEvent<HTMLDivElement>) => void;
 }) {
   return (
-    <div className="card" id={`card-${props.card.id}`} onClick={props.func}>
+    <div className="card" id={`card-${props.card.id}`}>
       <img src={props.card.image} alt="book" className="card__img" />
       <h3 className="card__title">{props.card.name}</h3>
       <p className="card__species">
@@ -19,25 +19,23 @@ export function Card(props: {
   );
 }
 
-function Cards(props: {
-  card: TCard[];
-  str: string;
-  loading: boolean;
-  func: (e: React.MouseEvent<HTMLDivElement>) => void;
-}) {
-  if (props.card.length === 0) {
+function Cards() {
+  const result: TCard[] = useAppSelector(state => state.main.result);
+  const cardLoader: boolean = useAppSelector(state => state.main.cardLoader);
+
+  if (result.length === 0) {
     return (
       <div className="cards">
-        <Loader visible={props.loading} />
-        <p className="cards-nofound">{props.str}</p>
+        <Loader visible={cardLoader} />
+        <p className="cards-nofound">No result were found with this query</p>
       </div>
     );
   } else {
     return (
       <div className="cards">
-        <Loader visible={props.loading} />
-        {props.card.map((item) => (
-          <Card card={item} key={item.id} func={props.func} />
+        <Loader visible={cardLoader} />
+        {result.map((item) => (
+          <Card card={item} key={item.id} />
         ))}
       </div>
     );

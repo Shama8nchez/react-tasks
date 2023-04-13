@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import { TData } from "types";
+import { fetchSubmit } from "../../../store/mainSlice";
+import { useAppDispatch } from "../../../store/store";
 
-function SearchBar(props: { func: (data: TData) => void }) {
+function SearchBar() {
   const {
     register,
     formState: { errors },
@@ -10,7 +12,12 @@ function SearchBar(props: { func: (data: TData) => void }) {
     reValidateMode: "onSubmit",
   });
 
-  const onSubmit = props.func;
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (data: TData) => {
+    dispatch(fetchSubmit(data));
+    localStorage.setItem("value", data.search);
+  }
 
   return (
     <form className="search__container" onSubmit={handleSubmit(onSubmit)}>
