@@ -167,6 +167,7 @@ function Main() {
 
   return (
     <main>
+      <Modal />
       <SearchBar />
       <Cards />
     </main>

@@ -1,12 +1,22 @@
 import Loader from "../../utils/Load/Loader";
 import { TCard } from "../../../types";
 import { useAppSelector } from "../../../store/store";
+import { fetchCharacter } from "../../../store/mainSlice";
+import { useAppDispatch } from "../../../store/store";
 
 export function Card(props: {
   card: TCard;
 }) {
+
+  const dispatch = useAppDispatch();
+  const character: TCard = useAppSelector(state => state.main.character);
+
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(fetchCharacter(e));
+  }
+
   return (
-    <div className="card" id={`card-${props.card.id}`}>
+    <div className="card" id={`card-${props.card.id}`} onClick={onClick}>
       <img src={props.card.image} alt="book" className="card__img" />
       <h3 className="card__title">{props.card.name}</h3>
       <p className="card__species">
@@ -23,7 +33,7 @@ function Cards() {
   const result: TCard[] = useAppSelector(state => state.main.result);
   const cardLoader: boolean = useAppSelector(state => state.main.cardLoader);
 
-  if (result.length === 0) {
+  if (!result) {
     return (
       <div className="cards">
         <Loader visible={cardLoader} />
