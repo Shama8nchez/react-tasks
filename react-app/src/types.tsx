@@ -10,13 +10,6 @@ export type TData = {
   search: string;
 };
 
-export type TApiState = {
-  api: any;
-  isModal: boolean;
-  loadingModal: boolean;
-  character: TCard
-}
-
 export type TCard = {
   id: number;
   name: string;

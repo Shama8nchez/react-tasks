@@ -2,27 +2,35 @@ import React, { MouseEvent } from "react";
 import st from "./Modal.module.css";
 import Loader from "../../../utils/Load/Loader";
 import { TCard } from "types";
-import { useAppSelector } from "../../../../store/store";
+import { useAppSelector, useAppDispatch } from "../../../../store/store";
+import { closeModal } from "../../../../store/mainSlice";
 
 const Modal = () => {
   const classModal = [st.modal];
 
-  const modal: boolean = useAppSelector(state => state.main.modal);
-  const character: TCard = useAppSelector(state => state.main.character);
+  const modal: boolean = useAppSelector((state) => state.main.modal);
+  const character: TCard = useAppSelector((state) => state.main.character);
+  const modalLoader: boolean = useAppSelector(
+    (state) => state.main.modalLoader
+  );
+
+  const dispatch = useAppDispatch();
+  const close = () => {
+    dispatch(closeModal());
+  };
 
   if (modal) {
     classModal.push(st.active);
   }
 
   return (
-    <div
-      className={classModal.join(" ")}
-    >
+    <div className={classModal.join(" ")} onClick={close}>
       <div
         className={st.modal__content}
         onClick={(e: MouseEvent) => e.stopPropagation()}
       >
-        <span className={st.close} >
+        <Loader visible={modalLoader} />
+        <span className={st.close} onClick={close}>
           x
         </span>
         <div className={st.modal__container}>

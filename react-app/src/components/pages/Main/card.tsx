@@ -4,16 +4,12 @@ import { useAppSelector } from "../../../store/store";
 import { fetchCharacter } from "../../../store/mainSlice";
 import { useAppDispatch } from "../../../store/store";
 
-export function Card(props: {
-  card: TCard;
-}) {
-
+export function Card(props: { card: TCard }) {
   const dispatch = useAppDispatch();
-  const character: TCard = useAppSelector(state => state.main.character);
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(fetchCharacter(e));
-  }
+  };
 
   return (
     <div className="card" id={`card-${props.card.id}`} onClick={onClick}>
@@ -30,8 +26,8 @@ export function Card(props: {
 }
 
 function Cards() {
-  const result: TCard[] = useAppSelector(state => state.main.result);
-  const cardLoader: boolean = useAppSelector(state => state.main.cardLoader);
+  const result: TCard[] = useAppSelector((state) => state.main.result);
+  const cardLoader: boolean = useAppSelector((state) => state.main.cardLoader);
 
   if (!result) {
     return (

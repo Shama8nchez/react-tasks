@@ -17,7 +17,7 @@ function SearchBar() {
   const onSubmit = (data: TData) => {
     dispatch(fetchSubmit(data));
     localStorage.setItem("value", data.search);
-  }
+  };
 
   return (
     <form className="search__container" onSubmit={handleSubmit(onSubmit)}>
