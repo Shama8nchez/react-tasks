@@ -46,5 +46,5 @@ export type TForm = {
   course: string;
   relocation: boolean;
   language: string;
-  img: FileList;
+  img: FileList | null;
 };

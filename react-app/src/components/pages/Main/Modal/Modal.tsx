@@ -1,13 +1,11 @@
 import React, { MouseEvent } from "react";
 import st from "./Modal.module.css";
 import Loader from "../../../utils/Load/Loader";
-import { TCard } from "types";
+import { TCard } from "../../../../types";
 import { useAppSelector, useAppDispatch } from "../../../../store/store";
 import { closeModal } from "../../../../store/mainSlice";
 
 const Modal = () => {
-  const classModal = [st.modal];
-
   const modal: boolean = useAppSelector((state) => state.main.modal);
   const character: TCard = useAppSelector((state) => state.main.character);
   const modalLoader: boolean = useAppSelector(
@@ -19,6 +17,7 @@ const Modal = () => {
     dispatch(closeModal());
   };
 
+  const classModal = [st.modal];
   if (modal) {
     classModal.push(st.active);
   }

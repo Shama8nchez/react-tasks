@@ -65,3 +65,15 @@ export const SEARCH_PATH = "/character";
 export const SEARCH_PARAM = "/?name";
 
 export const cards: TProps[] = [];
+
+export const RADIO_INPUTS = [
+  {
+    language: "English",
+  },
+  {
+    language: "Russian",
+  },
+  {
+    language: "Belarusian",
+  },
+];

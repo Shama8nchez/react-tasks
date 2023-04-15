@@ -1,24 +1,15 @@
-import { COURSES } from "../../../data/constants";
-import React, { Fragment, useState } from "react";
+import { COURSES, RADIO_INPUTS } from "../../../data/constants";
+import React, { Fragment } from "react";
 import { FormCard } from "./FormCard";
-import { TProps, TForm } from "../../../types";
+import { TForm } from "../../../types";
 import { useForm } from "react-hook-form";
-
-const RADIO_INPUTS = [
-  {
-    language: "English",
-  },
-  {
-    language: "Russian",
-  },
-  {
-    language: "Belarusian",
-  },
-];
+import { addCard } from "../../../store/formSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 function Form() {
-  const [card, setCard] = useState<TProps[]>([]);
-  const [note, setNote] = useState("");
+  const cards = useAppSelector((state) => state.form.cards);
+  const note = useAppSelector((state) => state.form.note);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -29,34 +20,28 @@ function Form() {
     reValidateMode: "onSubmit",
   });
 
-  const onSubmit = (data: TForm): void => {
-    const file = data.img[0];
+  const onSubmit = (data: TForm) => {
+    if (data.img) {
+      const file = data.img[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          const src = reader.result as string;
 
-    if (file) {
-      const render = new FileReader();
-      render.readAsDataURL(file);
-
-      render.onload = function () {
-        const src = render.result as string;
-
-        setCard((prevCard) => [
-          ...prevCard,
-          {
+          const obj = {
             name: data.name,
             birth: data.birth,
             course: data.course,
             relocation: `${data.relocation ? "Ready for relocation" : ""}`,
             language: data.language,
             img: src,
-          },
-        ]);
-      };
-
-      setNote("Card was added");
-      reset();
-
-      setTimeout(() => setNote(""), 5000);
+          };
+          dispatch(addCard(obj));
+        };
+      }
     }
+    reset();
   };
 
   return (
@@ -187,7 +172,7 @@ function Form() {
       </form>
       <p className="note">{note}</p>
       <div className="container">
-        {card.map((item, index) => (
+        {cards.map((item, index) => (
           <FormCard
             name={item.name}
             birth={item.birth}

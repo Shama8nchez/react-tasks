@@ -77,7 +77,7 @@ test("searchBar", () => {
     console.log(data);
   };
 
-  render(<SearchBar func={func} />);
+  render(<SearchBar />);
   const btn = screen.getByRole("button");
   expect(btn).toBeInTheDocument();
 });
@@ -178,7 +178,7 @@ test("card", () => {
     url: "url",
     created: "2013-02-17",
   };
-  render(<Card card={obj1} func={showModal} />);
+  render(<Card card={obj1} />);
   const element = screen.getByText("Morti");
   expect(element).toBeInTheDocument();
 });
@@ -253,7 +253,7 @@ test("Modal loads", () => {
     created: "2013-02-17",
   };
 
-  render(<Modal visible={true} loading={true} setVisible={func} data={obj1} />);
+  render(<Modal />);
   const div = screen.getByText("Wait...");
   expect(div).toBeInTheDocument();
 });
