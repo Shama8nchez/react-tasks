@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.83% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/24</span>
+                <span class='fraction'>9/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.83% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/24</span>
+                <span class='fraction'>9/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,21 +94,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import SearchBar from "./searchBar";
@@ -118,21 +118,21 @@ import Modal from "./Modal/Modal";
 import { fetchRM } from "../../../store/mainSlice";
 import { useAppDispatch } from "../../../store/store";
 &nbsp;
-function Main() {
-  const dispatch = useAppDispatch();
-&nbsp;
-  useEffect(() =&gt; {
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function Main() {</span></span>
+<span class="cstat-no" title="statement not covered" >  const dispatch = useAppDispatch();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    dispatch(fetchRM());</span>
-  }, [dispatch]);
-&nbsp;
-  return (
-    &lt;main&gt;
-      &lt;Modal /&gt;
-      &lt;SearchBar /&gt;
-      &lt;Cards /&gt;
-    &lt;/main&gt;
-  );
-}
+<span class="cstat-no" title="statement not covered" >  }, [dispatch]);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;main&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Modal /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;SearchBar /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Cards /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/main&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 export default Main;
 &nbsp;</pre></td></tr></table></pre>
@@ -142,7 +142,7 @@ export default Main;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-15T18:18:44.968Z
+                at 2023-04-15T19:41:13.351Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
