@@ -16,7 +16,7 @@ function SearchBar() {
 
   const onSubmit = (data: TData) => {
     dispatch(fetchSubmit(data));
-    dispatch(addQuery(data.search))
+    dispatch(addQuery(data.search));
   };
 
   return (

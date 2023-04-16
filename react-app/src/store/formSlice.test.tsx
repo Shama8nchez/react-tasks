@@ -1,4 +1,9 @@
-import formReducer, { addCard, FormState, hideNote, showNote } from "./formSlice";
+import formReducer, {
+  addCard,
+  FormState,
+  hideNote,
+  showNote,
+} from "./formSlice";
 
 describe("Form reducer", () => {
   const state: FormState = {

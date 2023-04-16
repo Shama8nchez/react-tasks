@@ -7,11 +7,11 @@ import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 function Main() {
   const dispatch = useAppDispatch();
-  const query = useAppSelector((state) => state.main.query)
+  const query = useAppSelector((state) => state.main.query);
 
   useEffect(() => {
     dispatch(fetchRM(query));
-  }, [dispatch]);
+  }, [dispatch, query]);
 
   return (
     <main>

@@ -32,7 +32,7 @@ export const formSlice = createSlice({
     },
     hideNote(state) {
       state.note = "";
-    }
+    },
   },
 });
 

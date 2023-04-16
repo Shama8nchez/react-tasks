@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { BASE_PATH, SEARCH_PATH, SEARCH_PARAM } from "../data/constants";
 import { TCard, TData } from "types";
-import { getQuery } from "../components/utils/queryString";
 
 export interface MainState {
   error: string;
@@ -9,7 +8,7 @@ export interface MainState {
   result: TCard[];
   cardLoader: boolean;
   modalLoader: boolean;
-  query: string,
+  query: string;
   character: TCard;
 }
 
@@ -42,18 +41,21 @@ const initialState: MainState = {
   },
 };
 
-export const fetchRM = createAsyncThunk("main/fetchRM", async function (value: string) {
-  const response = await fetch(
-    `${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${value}`
-  );
+export const fetchRM = createAsyncThunk(
+  "main/fetchRM",
+  async function (value: string) {
+    const response = await fetch(
+      `${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${value}`
+    );
 
-  if (!response.ok) {
-    throw new Error("Something wrong");
+    if (!response.ok) {
+      throw new Error("Something wrong");
+    }
+    const data = await response.json();
+    const result = await data.results;
+    return result;
   }
-  const data = await response.json();
-  const result = await data.results;
-  return result;
-});
+);
 
 export const fetchSubmit = createAsyncThunk(
   "main/fetchSubmit",
@@ -88,8 +90,8 @@ export const mainSlice = createSlice({
       state.modal = false;
     },
     addQuery(state, action) {
-      state.query = action.payload
-    }
+      state.query = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
