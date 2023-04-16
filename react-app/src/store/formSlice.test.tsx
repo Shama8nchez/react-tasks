@@ -1,9 +1,6 @@
-import formReducer, {
-  addCard,
-  FormState,
-} from './formSlice'
+import formReducer, { addCard, FormState } from "./formSlice";
 
-describe('Form reducer', () => {
+describe("Form reducer", () => {
   const state: FormState = {
     cards: [],
     card: {
@@ -15,7 +12,7 @@ describe('Form reducer', () => {
       img: null,
     },
     note: "",
-  }
+  };
 
   it("defaul state", () => {
     const result = formReducer(undefined, { type: "" });
@@ -23,31 +20,33 @@ describe('Form reducer', () => {
     expect(result).toEqual(state);
   });
 
-  it('should handle initial state', () => {
-    const initialState: FormState = state
-    const action = { type: 'unknown' }
-    const expectedState = initialState
+  it("should handle initial state", () => {
+    const initialState: FormState = state;
+    const action = { type: "unknown" };
+    const expectedState = initialState;
 
-    expect(formReducer(initialState, action)).toEqual(expectedState)
+    expect(formReducer(initialState, action)).toEqual(expectedState);
   });
 
   it("addCard", () => {
     const action = { type: addCard.type, payload: "Shama" };
 
-    const result = formReducer({
-      cards: [],
-      card: {
-        name: "",
-        birth: "",
-        course: "",
-        relocation: false,
-        language: "",
-        img: null,
+    const result = formReducer(
+      {
+        cards: [],
+        card: {
+          name: "",
+          birth: "",
+          course: "",
+          relocation: false,
+          language: "",
+          img: null,
+        },
+        note: "",
       },
-      note: "",
-    }, action)
+      action
+    );
 
     expect(result.cards[0]).toBe("Shama");
   });
-})
-
+});
