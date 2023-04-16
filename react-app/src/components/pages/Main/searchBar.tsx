@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { TData } from "types";
-import { fetchSubmit } from "../../../store/mainSlice";
+import { addQuery, fetchSubmit } from "../../../store/mainSlice";
 import { useAppDispatch } from "../../../store/store";
 
 function SearchBar() {
@@ -16,7 +16,7 @@ function SearchBar() {
 
   const onSubmit = (data: TData) => {
     dispatch(fetchSubmit(data));
-    localStorage.setItem("value", data.search);
+    dispatch(addQuery(data.search))
   };
 
   return (

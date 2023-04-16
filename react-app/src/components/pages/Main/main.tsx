@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import Cards from "./card";
 import Modal from "./Modal/Modal";
 import { fetchRM } from "../../../store/mainSlice";
-import { useAppDispatch } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 function Main() {
   const dispatch = useAppDispatch();
+  const query = useAppSelector((state) => state.main.query)
 
   useEffect(() => {
-    dispatch(fetchRM());
+    dispatch(fetchRM(query));
   }, [dispatch]);
 
   return (

@@ -11,6 +11,7 @@ const IS = {
   result: [],
   cardLoader: false,
   modalLoader: false,
+  query: "",
   character: {
     name: "",
     status: "",
@@ -50,6 +51,7 @@ describe("mainSlice", () => {
         result: [],
         cardLoader: false,
         modalLoader: false,
+        query: "",
         character: {
           name: "",
           status: "",

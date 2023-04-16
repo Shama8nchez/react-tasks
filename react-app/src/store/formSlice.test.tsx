@@ -1,4 +1,4 @@
-import formReducer, { addCard, FormState } from "./formSlice";
+import formReducer, { addCard, FormState, hideNote, showNote } from "./formSlice";
 
 describe("Form reducer", () => {
   const state: FormState = {
@@ -48,5 +48,49 @@ describe("Form reducer", () => {
     );
 
     expect(result.cards[0]).toBe("Shama");
+  });
+
+  it("showNote", () => {
+    const action = { type: showNote.type };
+
+    const result = formReducer(
+      {
+        cards: [],
+        card: {
+          name: "",
+          birth: "",
+          course: "",
+          relocation: false,
+          language: "",
+          img: null,
+        },
+        note: "Card was added",
+      },
+      action
+    );
+
+    expect(result.note).toBe("Card was added");
+  });
+
+  it("hideNote", () => {
+    const action = { type: hideNote.type };
+
+    const result = formReducer(
+      {
+        cards: [],
+        card: {
+          name: "",
+          birth: "",
+          course: "",
+          relocation: false,
+          language: "",
+          img: null,
+        },
+        note: "",
+      },
+      action
+    );
+
+    expect(result.note).toEqual("");
   });
 });

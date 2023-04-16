@@ -27,9 +27,15 @@ export const formSlice = createSlice({
     addCard(state, action: PayloadAction<TProps>) {
       state.cards.push(action.payload);
     },
+    showNote(state) {
+      state.note = "Card was added";
+    },
+    hideNote(state) {
+      state.note = "";
+    }
   },
 });
 
-export const { addCard } = formSlice.actions;
+export const { addCard, showNote, hideNote } = formSlice.actions;
 
 export default formSlice.reducer;

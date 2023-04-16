@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { FormCard } from "./FormCard";
 import { TForm } from "../../../types";
 import { useForm } from "react-hook-form";
-import { addCard } from "../../../store/formSlice";
+import { addCard, hideNote, showNote } from "../../../store/formSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 function Form() {
@@ -38,6 +38,9 @@ function Form() {
             img: src,
           };
           dispatch(addCard(obj));
+          dispatch(showNote());
+
+          setTimeout(() => dispatch(hideNote()), 5000);
         };
       }
     }

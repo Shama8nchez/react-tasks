@@ -9,6 +9,7 @@ export interface MainState {
   result: TCard[];
   cardLoader: boolean;
   modalLoader: boolean;
+  query: string,
   character: TCard;
 }
 
@@ -18,6 +19,7 @@ const initialState: MainState = {
   result: [],
   cardLoader: false,
   modalLoader: false,
+  query: "",
   character: {
     name: "",
     status: "",
@@ -40,9 +42,9 @@ const initialState: MainState = {
   },
 };
 
-export const fetchRM = createAsyncThunk("main/fetchRM", async function () {
+export const fetchRM = createAsyncThunk("main/fetchRM", async function (value: string) {
   const response = await fetch(
-    `${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${getQuery()}`
+    `${BASE_PATH}${SEARCH_PATH}${SEARCH_PARAM}=${value}`
   );
 
   if (!response.ok) {
@@ -85,6 +87,9 @@ export const mainSlice = createSlice({
     closeModal(state) {
       state.modal = false;
     },
+    addQuery(state, action) {
+      state.query = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -127,6 +132,6 @@ export const mainSlice = createSlice({
   },
 });
 
-export const { closeModal } = mainSlice.actions;
+export const { closeModal, addQuery } = mainSlice.actions;
 
 export default mainSlice.reducer;
