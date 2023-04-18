@@ -29,7 +29,7 @@ function Cards() {
   const result: TCard[] = useAppSelector((state) => state.main.result);
   const cardLoader: boolean = useAppSelector((state) => state.main.cardLoader);
 
-  if (!result) {
+  if (!result || result.length === 0) {
     return (
       <div className="cards">
         <Loader visible={cardLoader} />

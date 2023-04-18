@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { TData } from "types";
 import { addQuery, fetchSubmit } from "../../../store/mainSlice";
-import { useAppDispatch } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 
 function SearchBar() {
   const {
@@ -11,6 +11,8 @@ function SearchBar() {
   } = useForm<TData>({
     reValidateMode: "onSubmit",
   });
+
+  const value = useAppSelector((state) => state.main.query);
 
   const dispatch = useAppDispatch();
 
@@ -24,6 +26,7 @@ function SearchBar() {
       <input
         type="text"
         className="search"
+        defaultValue={value}
         {...register("search", {
           required: "Field is empty",
         })}
