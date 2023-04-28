@@ -1,10 +1,9 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { renderToPipeableStream } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
-
-import { store } from './store/store';
-import App from './App';
+import React from "react";
+import { Provider } from "react-redux";
+import { renderToPipeableStream } from "react-dom/server";
+import { StaticRouter } from "react-router-dom/server";
+import { store } from "./store/store";
+import App from "./App";
 
 export const render = (url: string, options?: object) => {
   return renderToPipeableStream(

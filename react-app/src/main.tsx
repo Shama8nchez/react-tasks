@@ -6,7 +6,8 @@ import { store } from "./store/store";
 import App from "./App";
 import "./index.css";
 
-ReactDOM.hydrateRoot(document.getElementById("root") as HTMLElement, 
+ReactDOM.hydrateRoot(
+  document.getElementById("root") as HTMLElement,
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
